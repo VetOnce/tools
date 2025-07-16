@@ -1,0 +1,15 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "cd observability && bun install"
+watchPaths = ["observability/**"]
+
+[deploy]
+startCommand = "cd observability && bun start"
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[[services]]
+name = "observability"
+rootDirectory = "observability"
